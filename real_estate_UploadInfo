@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>提交信息页</title>
+    <style>
+      /* 样式设置 */
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .gray {
+        color: #ccc;
+      }
+    </style>
+
+    <script>
+      function toggleQuestion6() {
+        var question3 = document.querySelector(
+          'input[name="question3"]:checked'
+        );
+        var question6 = document.querySelector("#question6");
+        if (question3 && question3.value === "B") {
+          question6.style.display = "block";
+        } else {
+          question6.style.display = "none";
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <h1>提交信息页</h1>
+    <form id="submit-form">
+      <fieldset>
+        <label>
+          请选择角色：
+          <input type="radio" name="role" value="buyer" checked />购房人
+          <input type="radio" name="role" value="seller" />卖房人
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <label>
+          角色名：
+          <input
+            type="text"
+            name="name"
+            placeholder="贤达小区1号楼308室"
+            class="gray"
+            onfocus="clearPlaceholder(this)"
+          />
+        </label>
+      </fieldset>
+      <fieldset>
+        <!-- 单选题3 -->
+        <label
+          >计划购置的房产类型：<br /><br /><input
+            type="radio"
+            name="question3"
+            value="A"
+            onclick="toggleQuestion6()"
+          />
+          新房</label
+        >
+        <label
+          ><input
+            type="radio"
+            name="question3"
+            value="B"
+            onclick="toggleQuestion6()"
+          />
+          二手房</label
+        >
+      </fieldset>
+
+      <fieldset>
+        <label>
+          是否家庭首套房：
+          <input type="radio" name="first-property" value="yes" />首套
+          <input type="radio" name="first-property" value="no" checked />二套
+          <input type="radio" name="first-property" value="third" />三套
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <label id="area">
+          面积是否小于90m²：
+          <input type="radio" name="small-area" value="yes" />是
+          <input type="radio" name="small-area" value="no" checked />否
+        </label>
+      </fieldset>
+
+      <div id="question6" style="display: none">
+        <fieldset>
+          <label
+            >这套房产的卖家持房情况: <br /><br /><input
+              type="radio"
+              name="question6"
+              value="A"
+            />
+            满五唯一</label
+          ><br />
+          <label
+            ><input type="radio" name="question6" value="B" /> 满二唯一</label
+          >
+          <label
+            ><input type="radio" name="question6" value="C" /> 其他情况：</label
+          >
+          <input type="text" name="question6_other" />
+        </fieldset>
+      </div>
+
+      <fieldset>
+        <label>
+          买家当前持房情况：
+          <input
+            type="radio"
+            name="buyer-property-status"
+            value="none"
+            checked
+          />当前无房
+          <input
+            type="radio"
+            name="buyer-property-status"
+            value="one"
+          />已有一套房
+          <input
+            type="radio"
+            name="buyer-property-status"
+            value="two"
+          />已有二套房
+        </label>
+      </fieldset>
+      <fieldset>
+        <div>
+          <p>买家当前房产贷款情况</p>
+          <input
+            type="radio"
+            name="question8"
+            value="无贷款记录"
+          />无贷款记录<br />
+          <input
+            type="radio"
+            name="question8"
+            value="有贷款记录但已结清"
+          />有贷款记录但已结清<br />
+          <input
+            type="radio"
+            name="question8"
+            value="有贷款记录且未结清"
+          />有贷款记录且未结清<br />
+        </div>
+      </fieldset>
+      <fieldset>
+        <div>
+          <p>贷款方式</p>
+          <input
+            type="radio"
+            name="question9"
+            value="公积金贷款"
+          />公积金贷款<br />
+          <input type="radio" name="question9" value="商业贷款" />商业贷款<br />
+          <input type="radio" name="question9" value="组合贷款" />组合贷款<br />
+        </div>
+      </fieldset>
+      <fieldset>
+        <div>
+          <label for="loan-rate">贷款利率：</label>
+          <input type="text" id="loan-rate" name="loan-rate" value="4.1%" />
+          <div id="loan-rate-slider"></div>
+          <script>
+            // 使用iSlider库实现滚动选择
+            const loanRateSlider = new iSlider({
+              dom: "#loan-rate-slider",
+              data: [
+                { value: "3.0%", label: "3.0%" },
+                { value: "3.1%", label: "3.1%" },
+                { value: "3.2%", label: "3.2%" },
+                { value: "3.3%", label: "3.3%" },
+                { value: "3.4%", label: "3.4%" },
+                { value: "3.5%", label: "3.5%" },
+                { value: "3.6%", label: "3.6%" },
+                { value: "3.7%", label: "3.7%" },
+                { value: "3.8%", label: "3.8%" },
+                { value: "3.9%", label: "3.9%" },
+                { value: "4.0%", label: "4.0%" },
+                { value: "4.1%", label: "4.1%" },
+                { value: "4.2%", label: "4.2%" },
+                { value: "4.3%", label: "4.3%" },
+                { value: "4.4%", label: "4.4%" },
+                { value: "4.5%", label: "4.5%" },
+                { value: "4.6%", label: "4.6%" },
+                { value: "4.7%", label: "4.7%" },
+                { value: "4.8%", label: "4.8%" },
+                { value: "4.9%", label: "4.9%" },
+                { value: "5.0%", label: "5.0%" },
+              ],
+              defaultValue: 11,
+              onslide: function (data) {
+                document.getElementById("loan-rate").value = data.value;
+              },
+            });
+          </script>
+        </div>
+      </fieldset>
+      <button type="submit" onclick="submitForm()">提交信息</button>
+
+      <script>
+        function submitForm() {
+          // 获取表单元素
+          const form = document.getElementById("form");
+          const role = form.querySelector('input[name="role"]:checked');
+          const roleName = form.querySelector('input[name="roleName"]');
+          const houseType = form.querySelector(
+            'input[name="houseType"]:checked'
+          );
+          const isFirstHouse = form.querySelector(
+            'input[name="isFirstHouse"]:checked'
+          );
+          const isSmallArea = form.querySelector(
+            'input[name="isSmallArea"]:checked'
+          );
+          const sellerHoldType = form.querySelector(
+            'input[name="sellerHoldType"]:checked'
+          );
+          const buyerHoldType = form.querySelector(
+            'input[name="buyerHoldType"]:checked'
+          );
+          const sellerLoanType = form.querySelector(
+            'input[name="sellerLoanType"]:checked'
+          );
+          const loanRate = form.querySelector('input[name="loanRate"]');
+
+          // 表单验证
+          if (
+            !role ||
+            !roleName.value ||
+            !houseType ||
+            !isFirstHouse ||
+            !isSmallArea ||
+            !buyerHoldType ||
+            !sellerLoanType ||
+            !loanRate
+          ) {
+            alert("请填写完整的信息");
+            return;
+          }
+
+          // TODO: 表单提交处理逻辑
+        }
+
+        function resetForm() {
+          // 获取表单元素
+          const form = document.getElementById("form");
+          const role = form.querySelector('input[name="role"]');
+          const roleName = form.querySelector('input[name="roleName"]');
+          const houseType = form.querySelector('input[name="houseType"]');
+          const isFirstHouse = form.querySelector('input[name="isFirstHouse"]');
+          const isSmallArea = form.querySelector('input[name="isSmallArea"]');
+          const sellerHoldType = form.querySelector(
+            'input[name="sellerHoldType"]'
+          );
+          const buyerHoldType = form.querySelector(
+            'input[name="buyerHoldType"]'
+          );
+          const sellerLoanType = form.querySelector(
+            'input[name="sellerLoanType"]'
+          );
+          const loanRate = form.querySelector('input[name="loanRate"]');
+
+          // 表单重置
+          role.checked = true;
+          roleName.value = "";
+          houseType.checked = true;
+          isFirstHouse.checked = true;
+          isSmallArea.checked = true;
+          sellerHoldType.checked = true;
+          buyerHoldType.checked = true;
+          sellerLoanType.checked = true;
+          loanRate.value = "4.1%";
+        }
+      </script>
+    </form>
+  </body>
+</html>
